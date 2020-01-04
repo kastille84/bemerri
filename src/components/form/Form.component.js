@@ -13,7 +13,7 @@ class Form extends Component {
     console.log(e)
     e.preventDefault();
     let shortUrlObj = {
-      originalUrl: this.state.customUrl.length >0? `http://merry.com/${this.state.customUrl}`: this.state.url,
+      originalUrl: this.state.customUrl.length >0? `https://merry.com/${this.state.customUrl}`: this.state.url,
       tinyUrl: `https://merry.com/${this.makeTinyUrl()}`,
       created_at:Math.round(new Date().getTime()/1000),
       visited_date: null
