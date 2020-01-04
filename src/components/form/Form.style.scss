@@ -1,0 +1,15 @@
+.form {
+
+  &-group {
+    margin-bottom: 10px;
+
+    label {
+      display: block;
+    }
+    input[type="text"] {
+      display:block;
+      
+    }
+  }
+
+}

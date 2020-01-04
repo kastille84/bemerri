@@ -1,26 +1,45 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Router from './Router';
+
+import "./App.scss";
+
+import {
+  SET_DUMMY
+} from './constants'
+
+class App extends React.Component {
+
+  componentDidMount() {
+    this.props.setDummy(true)
+    let urlArray = [];
+    localStorage.setItem("urlArray", JSON.stringify(urlArray));
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <div className="header">
+          <Link to="/">Home</Link>
+          {" "}
+          <Link to="/admin">Admin</Link>
+        </div>
+        <Router />        
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  dummy: state.dummy
+});
+
+const mapDispatchToProps = (dispatch => ({
+  setDummy: (bool) => {
+    dispatch({type: SET_DUMMY, payload: bool})
+  }
+}))
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
